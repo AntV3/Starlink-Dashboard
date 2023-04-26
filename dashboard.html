@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PSU Dashboard</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: row;
+      }
+
+      aside {
+        background-color: #f1f1f1;
+        padding: 10px;
+        width: 200px;
+      }
+
+      aside ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      aside ul li {
+        margin-bottom: 10px;
+      }
+
+      aside ul li a {
+        display: block;
+        color: #333;
+        padding: 5px;
+        text-decoration: none;
+      }
+
+      aside ul li a:hover {
+        background-color: #ddd;
+      }
+
+      main {
+        flex: 1;
+        padding: 10px;
+      }
+
+      footer {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+      }
+      input[type="text"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        width: 300px;
+        box-sizing: border-box;
+      }
+
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: #fff;
+        border-radius: 5px;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      /* Style for table */
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      table th, table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      table th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>PSU</h1>
+    </header>
+    <div class="container">
+      <aside>
+        <ul>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Reports</a></li>
+          <li><a href="#">Settings</a></li>
+        </ul>
+      </aside>
+      <main>
+        <h2>Power Supply Team</h2>
+        <h3>Todays Goal :<input type="text" value="1300"></h3>
+      
+          <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Station</th>
+                   
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="text" value="Tony" /></td>
+                    <td>Gorevent</td>
+                    
+                  </tr>
+                  <tr>
+                    <td><input type="text" value="Oscar" /></td>
+                    <td>Extrude</td>
+                   
+                  </tr>
+                  <tr>
+                    <td><input type="text" value="Issac" /></td>
+                    <td>PCBA</td>
+                    
+                  </tr>
+                  <tr>
+                    <td><input type="text" value="Angel" /></td>
+                    <td>Sheet-Metal</td>
+                   
+                  </tr>
+                  <tr>
+                    <td><input type="text" value="Will" /></td>
+                    <td>Bottom Cap</td>
+                   
+                  </tr>
+                  <tr>
+                    <td><input type="text" value="Mari" /></td>
+                    <td>Vibe Weld</td>
+                    
+                  </tr>
+                  <tr>
+                    <td><input type="text" value="Gil" /></td>
+                    <td>Hi-Pot</td>
+                  
+                  </tr>
+                  <tr>
+                    <td><input type="text" value="Gil" /></td>
+                    <td>Functional Testing</td>
+                  
+                  </tr>
+                </tbody>
+              </table>
+            
+              <button onclick="randomizeTable()">Randomize Order</button>
+            
+            
+    </main>
+    </div>
+   
+      <script>
+         function randomizeTable() {
+      var table = document.getElementById("data-table");
+      
+      var rows = table.getElementsByTagName("tr");
+      
+      
+      var names = Array.from(rows).slice(1).map(row => {
+        var input = row.getElementsByTagName("input")[0];
+        return input ? input.value : row.getElementsByTagName("td")[0].innerHTML;
+      });
+      
+      
+      var remainingNames = names.slice();
+      
+      for (var i = 1; i < rows.length; i++) {
+        var j = Math.floor(Math.random() * remainingNames.length);
+        var name = remainingNames[j];
+        var index = names.indexOf(name);
+        var row = rows[i];
+        var input = row.getElementsByTagName("input")[0];
+        if (input) {
+          input.value = name;
+        } else {
+          row.getElementsByTagName("td")[0].innerHTML = name;
+        }
+        names.splice(index, 1);
+        remainingNames.splice(j, 1);
+      }
+    }
+    
+      </script>
+      
+    <footer>
+      <p>Copyright © 2023 T</p>
+    </footer>
+  </body>
+</html>
